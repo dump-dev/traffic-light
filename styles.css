@@ -1,0 +1,67 @@
+:root {
+  --light-red: red;
+  --light-yellow: yellow;
+  --light-green: green;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  display: grid;
+  place-items: center;
+  min-height: 100svh;
+  margin: 0;
+}
+
+.traffic-light-box {
+  --traffic-light-box-width: 320px;
+  width: var(--traffic-light-box-width);
+
+  background-color: #1c1c1c;
+  border: 10px solid black;
+  padding: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.traffic-light-circle {
+  --traffic-light-circle-radius: calc(var(--traffic-light-box-width) / 2);
+  width: var(--traffic-light-circle-radius);
+  height: var(--traffic-light-circle-radius);
+
+  border-radius: 50%;
+  border: 2px solid black;
+}
+
+.signal {
+  --space-lines-grid: 5px;
+  --color-lines-grid: #1a1a1a;
+  background-color: black;
+  background-image: repeating-linear-gradient(
+      var(--color-lines-grid) 0 1px,
+      transparent 1px 100%
+    ),
+    repeating-linear-gradient(
+      90deg,
+      var(--color-lines-grid) 0 1px,
+      transparent 1px 100%
+    );
+  background-size: var(--space-lines-grid) var(--space-lines-grid);
+  background-position: center;
+}
+
+[data-signal-state="stop"] .signal--stop {
+  background-color: var(--light-red);
+}
+
+[data-signal-state="attention"] .signal--attention {
+  background-color: var(--light-yellow);
+}
+
+[data-signal-state="follow"] .signal--follow {
+  background-color: var(--light-green);
+}
